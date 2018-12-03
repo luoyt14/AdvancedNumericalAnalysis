@@ -1,4 +1,4 @@
-function [x,k] = Jacobi(A,b,x0,er1)
+function [x,k,rho] = Jacobi(A,b,x0,er1)
 %Jacobi迭代法求解线性方程组Ax=b的解
 %   input:A,b
 %   output:x,k
