@@ -19,7 +19,7 @@ for n = 1:testNum
     %Jacobiµü´ú·¨
     x0 = zeros(n,1);
     [x2,k,rho] = Jacobi(H,b,x0,1e-6);
-    error_jacobi(n)=norm(x2-x)/norm(x);
+    error_jaco=norm(x2-x)/norm(x);
     rho_jacobi(n) = rho;
 
     %Gauss

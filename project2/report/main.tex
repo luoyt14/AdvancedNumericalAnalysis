@@ -10,8 +10,17 @@
 \usepackage{amsthm}
 \usepackage{indentfirst}
 \setlength{\parindent}{2em}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{float} 
+\usepackage{subfigure}
 
 \renewcommand\thefigure{\thesection.\arabic{figure}}
+\makeatletter
+\@addtoreset{figure}{section}
+\makeatother
+
+\renewcommand\thesubfigure{\thesection.\arabic{figure}(\alph{subfigure})}
 \makeatletter
 \@addtoreset{figure}{section}
 \makeatother
@@ -25,6 +34,11 @@
 \@addtoreset{equation}{subsection}
 %\setcounter{section}{-1}
 \makeatother
+
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black
+}
 
 \title{高等数值分析}
 \author{罗雁天 \\
@@ -59,6 +73,9 @@
 	\end{center}
 \end{titlepage}
 
+\tableofcontents
+\newpage
+
 \section{题目描述}
 理论分析表明，数值求解病态线性方程组很困难。考虑求解如下的线性方程组，$Hx=b$，其中$H$是Hilbert矩阵，$H=(h_{ij}),h_{ij}=\frac{1}{i+j-1},i,j=1,2,\cdots,n$。本次大作业从条件数、高斯消去法、Jacobi迭代法、Gauss-Seidel迭代法、SOR迭代法等角度分析上述病态线性方程组并进行对比。
 
@@ -70,7 +87,7 @@
 
 \begin{table}[htbp]
 	\centering
-	\caption{不同$k$值与不同$\lambda$条件下的对比表格}
+	\caption{Hilbert矩阵2-条件数与阶数的关系表格}
 	\label{tab:table1}
 	\begin{tabular}{|c|c|c|c|c|c|}
 		\hline
@@ -107,4 +124,51 @@
 \end{figure}
 
 \section{Gauss消去法}
+用Gauss消去法将Hilbert矩阵消成上三角矩阵，然后求解结果。我们将阶数$n=2,5,10,20,50,100$的误差列表如表\ref{tab:table2}所示，从表中我们可以看出，随着矩阵阶数的增加，Gauss消去法的误差上升较快，当阶数为13时，误差就已经达到了3.0655，相对误差已经很大了，因此Gauss消去法不适和高阶Hilbert矩阵求解。我们绘制出$n=1\to100$时的Gauss消去法求解的相对误差曲线如图\ref{fig:4}所示。
+
+\begin{table}[htbp]
+	\centering
+	\caption{Gauss消去法相对误差与阶数关系表格}
+	\label{tab:table2}
+	\begin{tabular}{|p{4cm}<{\centering}|p{6cm}<{\centering}|}
+		\hline
+		阶数n & Gauss消去法的相对误差 \\
+		\hline
+		2 & 5.66104886700368e-16 \\
+		\hline
+		5 & 1.55303820484067e-12 \\
+		\hline
+		10 & 0.000223773106799740 \\
+		\hline
+		20 & 23.5417423737487 \\
+		\hline
+		50 & 240.055736859534 \\
+		\hline
+		100 & 78.1201736046372 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../code/result/gausserror}
+	\caption{\label{fig:4}Gauss消去法相对误差与阶数关系曲线图}
+\end{figure}
+
+\section{Jacobi矩阵迭代法}
+设$H=D-L-U$，其中$D=diag(h_{11},h_{22},\cdots,h_{nn})$表示Hilbert矩阵$H$的对角线，$L$表示$H$的左下角元素的相反数，是一个下三角矩阵，$U$表示$H$的右上角元素的相反数，是一个上三角矩阵。因此，线性方程组$Hx=b$可以转换为$x=B_Jx+f$，其中$B_J=D^{-1}(L+U),f=D^{-1}b$，由此得到Jacobi迭代格式$x^{(k+1)}=B_Jx^{(k)}+f$。由于此种迭代格式只有当矩阵$B_J$的谱半径小于1时，迭代才是收敛的，因此，我们首先绘制出Jacobi迭代矩阵$B_J$的谱半径与阶数$n$的曲线图如图\ref{fig:5}所示，从图\subref{fig:b}中可以看出，当阶数$n>2$时，Jacobi迭代矩阵的谱半径就已经超过1了，因此当$n>2$时，Jacobi迭代法不收敛。当$n=2$时，Jicobi迭代相对误差为3.18555931744235e-07，误差比Gauss消去法在n=2时的误差还要大，因此，Jacobi迭代法不适和Hilbert矩阵线性方程组的求解。
+
+\begin{figure}[!h] \centering 
+	\subfigure[Jacobi迭代矩阵谱半径图] { \label{fig:a} 
+		\includegraphics[width=0.48\columnwidth]{../code/result/jacobirho} 
+	} 
+	\subfigure[Jacobi迭代矩阵谱半径与1比较图] { \label{fig:b} 
+		\includegraphics[width=0.48\columnwidth]{../code/result/jacobirho2} 
+	} 
+	\caption{Jacobi迭代矩阵谱半径图} 
+	\label{fig:5} 
+\end{figure}
+
+\section{Gauss-Seidel矩阵迭代法}
+
 \end{document}
