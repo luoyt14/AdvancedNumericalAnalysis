@@ -6,22 +6,13 @@ x = x0;
 er = 1;
 k=0;
 
-% for j=1:n-1                           				
-%     [~,p]=max(abs(A(j:n,j)));
-%     p=p+j-1;
-%     if p>j
-%         t1=A(j,:);A(j,:)=A(p,:);A(p,:)=t1;
-%         t2=b(j,:);b(j,:)=b(p,:);b(p,:)=t2;
-%     end 
-% end
-
 D = diag(diag(A));
 L = tril(A)-D;
 U = triu(A)-D;
 J = -inv(D)*(L+U);
 f = D\b;
 rho = max(abs(eig(J)));
-if rho<1
+if rho<1+1e-6
     fprintf(1, 'Jacobi迭代法收敛\n');
     while er>er1
         k = k+1;
@@ -33,5 +24,11 @@ if rho<1
 else
     fprintf(1, 'Jacobi迭代法不收敛\n');
 end
+
+% for m=1:100
+%     x1 = J*x0+f;
+%     x0 = x1;
+% end
+% x = x0;
 end
 
