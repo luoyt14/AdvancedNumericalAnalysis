@@ -156,7 +156,7 @@
 \end{figure}
 
 \section{Jacobi矩阵迭代法}
-设$H=D-L-U$，其中$D=diag(h_{11},h_{22},\cdots,h_{nn})$表示Hilbert矩阵$H$的对角线，$L$表示$H$的左下角元素的相反数，是一个下三角矩阵，$U$表示$H$的右上角元素的相反数，是一个上三角矩阵。因此，线性方程组$Hx=b$可以转换为$x=B_Jx+f$，其中$B_J=D^{-1}(L+U),f=D^{-1}b$，由此得到Jacobi迭代格式$x^{(k+1)}=B_Jx^{(k)}+f$。由于此种迭代格式只有当矩阵$B_J$的谱半径小于1时，迭代才是收敛的，因此，我们首先绘制出Jacobi迭代矩阵$B_J$的谱半径与阶数$n$的曲线图如图\ref{fig:5}所示，从图\subref{fig:b}中可以看出，当阶数$n>2$时，Jacobi迭代矩阵的谱半径就已经超过1了，因此当$n>2$时，Jacobi迭代法不收敛。当$n=2$时，Jicobi迭代相对误差为3.18555931744235e-07，误差比Gauss消去法在n=2时的误差还要大，因此，Jacobi迭代法不适和Hilbert矩阵线性方程组的求解。
+设$H=D-L-U$，其中$D=diag(h_{11},h_{22},\cdots,h_{nn})$表示Hilbert矩阵$H$的对角线，$L$表示$H$的左下角元素的相反数，是一个下三角矩阵，$U$表示$H$的右上角元素的相反数，是一个上三角矩阵。因此，线性方程组$Hx=b$可以转换为$x=B_Jx+f$，其中$B_J=D^{-1}(L+U),f=D^{-1}b$，由此得到Jacobi迭代格式$x^{(k+1)}=B_Jx^{(k)}+f$。由于此种迭代格式只有当矩阵$B_J$的谱半径小于1时，迭代才是收敛的，因此，我们首先绘制出Jacobi迭代矩阵$B_J$的谱半径与阶数$n$的曲线图如图\ref{fig:5}所示，从图\subref{fig:b}中可以看出，当阶数$n>2$时，Jacobi迭代矩阵的谱半径就已经超过1了，因此当$n>2$时，Jacobi迭代法不收敛。当$n=2$时，我们设置当两次迭代的变化小于1e-6时，停止迭代，此时，Jicobi迭代相对误差为3.18555931744235e-07，误差比Gauss消去法在n=2时的误差还要大，因此，Jacobi迭代法不适合Hilbert矩阵线性方程组的求解。
 
 \begin{figure}[!h] \centering 
 	\subfigure[Jacobi迭代矩阵谱半径图] { \label{fig:a} 
@@ -170,5 +170,14 @@
 \end{figure}
 
 \section{Gauss-Seidel矩阵迭代法}
+设$H=D-L-U$，其中$D=diag(h_{11},h_{22},\cdots,h_{nn})$表示Hilbert矩阵$H$的对角线，$L$表示$H$的左下角元素的相反数，是一个下三角矩阵，$U$表示$H$的右上角元素的相反数，是一个上三角矩阵。因此，线性方程组$Hx=b$可以转换为$x=B_Gx+f$，其中$B_G=(D+L)^{-1}U,f=(D+L)^{-1}b$。与Jacobi矩阵迭代法类似，只有当矩阵$B_G$的谱半径小于1时，迭代才是收敛的，因此我们绘制出Gauss-Seidel迭代矩阵$B_G$的谱半径示意图如图\ref{fig:6}所示，从图中我们可以看出，当阶数$n\ge 13$时，谱半径已经$\ge 1$了，因此此时Gauss-Seidel迭代法已经不收敛了。由此可知，Gauss-Seidel迭代法效果比Jacobi迭代法支持的Hilbert矩阵阶数高一点，但是仍然不能够用于高阶Hilbert矩阵线性方程组的求解。
 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../code/result/gsrho}
+	\caption{\label{fig:6}Gauss-Seidel迭代矩阵谱半径与阶数n的关系图}
+\end{figure}
+
+\section{SOR迭代法}
+设$H=D-L-U$，其中$D=diag(h_{11},h_{22},\cdots,h_{nn})$表示Hilbert矩阵$H$的对角线，$L$表示$H$的左下角元素的相反数，是一个下三角矩阵，$U$表示$H$的右上角元素的相反数，是一个上三角矩阵。因此，线性方程组$Hx=b$可以转换为$x=L_wx+f$，其中$L_w=(D-wL)^{-1}((1-w)D+wU),f=(D-wL)^{-1}b$。
 \end{document}
