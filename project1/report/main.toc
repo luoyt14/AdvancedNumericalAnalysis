@@ -1,0 +1,14 @@
+\contentsline {section}{\numberline {1}题目描述}{2}{section.1}
+\contentsline {section}{\numberline {2}Runge函数的插值分析}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Newton插值}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Lagrange插值}{3}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}分段线性插值}{5}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}三次自然样条插值}{7}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}结论}{7}{subsection.2.5}
+\contentsline {section}{\numberline {3}不连续函数f(x)的插值分析}{8}{section.3}
+\contentsline {subsection}{\numberline {3.1}Newton插值}{8}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Lagrange插值}{8}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}分段线性插值}{10}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}三次自然样条插值}{12}{subsection.3.4}
+\contentsline {subsection}{\numberline {3.5}结论}{12}{subsection.3.5}
+\contentsline {section}{\numberline {4}实验总结}{13}{section.4}
